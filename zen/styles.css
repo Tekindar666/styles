@@ -1,0 +1,149 @@
+/* Component layering lets Tailwind utilities override individual properties. */
+@layer components {
+  .zen-dark {
+    color-scheme: dark;
+    --zen-background: #111;
+    --zen-foreground: #d6d6d6;
+    --zen-muted: #969696;
+    --zen-border: #777;
+    --zen-surface: #1c1c1c;
+    --zen-hover: #292929;
+    --zen-active: #383838;
+  }
+
+  .zen-light {
+    color-scheme: light;
+    --zen-background: #fafafa;
+    --zen-foreground: #292929;
+    --zen-muted: #626262;
+    --zen-border: #777;
+    --zen-surface: #f0f0f0;
+    --zen-hover: #e5e5e5;
+    --zen-active: #d6d6d6;
+  }
+
+  .zen-dark,
+  .zen-light {
+    background-color: var(--zen-background);
+    color: var(--zen-foreground);
+    font-family: system-ui, sans-serif;
+    line-height: 1.75;
+  }
+
+  .zen-content {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 640px;
+    margin-inline: auto;
+    padding: 128px 24px 48px;
+    font-family: system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+  }
+
+  .zen-heading {
+    margin: 0 0 24px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .zen-text {
+    margin: 0 0 24px;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .zen-muted-text {
+    color: var(--zen-muted);
+  }
+
+  .zen-link {
+    color: var(--zen-foreground);
+    text-decoration: underline;
+    text-decoration-color: var(--zen-border);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  .zen-link:hover,
+  .zen-link:focus-visible {
+    text-decoration-color: currentColor;
+  }
+
+  .zen-button {
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 6px;
+    padding: 8px 16px;
+    background-color: transparent;
+    color: var(--zen-foreground);
+    font: inherit;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  @media (hover: hover) {
+    .zen-button:hover:not(:disabled) {
+      background-color: var(--zen-hover);
+    }
+  }
+
+  .zen-button:disabled {
+    color: var(--zen-muted);
+    cursor: not-allowed;
+  }
+
+  .zen-nav {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    isolation: isolate;
+    gap: 4px;
+  }
+
+  .zen-nav a {
+    display: block;
+    padding: 3.5px 10px;
+    border-radius: 999px;
+    color: var(--zen-muted);
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+
+  .zen-nav a[aria-current="page"],
+  .zen-nav a:hover,
+  .zen-nav a:focus-visible {
+    color: var(--zen-foreground);
+  }
+
+  .zen-nav-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    visibility: hidden;
+    border-radius: 999px;
+    background-color: var(--zen-hover);
+    pointer-events: none;
+  }
+
+  .zen-nav-indicator[data-ready="true"] {
+    transition: transform 200ms ease, width 200ms ease, height 200ms ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .zen-nav-indicator[data-ready="true"] {
+      transition: none;
+    }
+  }
+
+  .zen-link:focus-visible,
+  .zen-nav a:focus-visible,
+  .zen-button:focus-visible {
+    outline: 2px solid var(--zen-foreground);
+    outline-offset: 4px;
+  }
+}

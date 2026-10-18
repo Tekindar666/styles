@@ -1,0 +1,12 @@
+@import './styles.css';
+
+/* Inline values resolve on the element, including inside nested theme wrappers. */
+@theme inline {
+  --color-zen-background: var(--zen-background);
+  --color-zen-foreground: var(--zen-foreground);
+  --color-zen-muted: var(--zen-muted);
+  --color-zen-border: var(--zen-border);
+  --color-zen-surface: var(--zen-surface);
+  --color-zen-hover: var(--zen-hover);
+  --color-zen-active: var(--zen-active);
+}
