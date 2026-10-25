@@ -12,6 +12,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "build:preview": "vite build",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.preview.json",
     "preview": "vite --host 127.0.0.1 --port 4173",
     "test": "npm run build && node --test tests/*.test.js",

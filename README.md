@@ -84,5 +84,14 @@ The adapter requires Tailwind v4. Plain styles do not require Tailwind. The prev
 - `npm run typecheck`
 - `npm run lint`
 - `npm run build`
+- `npm run build:preview -- --base=/styles/` → static preview in `preview-dist/`
+
+## GitHub Pages preview
+
+The Pages workflow builds and deploys the preview on pushes to `master`, or through a manual Actions run. In repository Settings → Pages, select **GitHub Actions** as the build source before the first deployment.
+
+Preview URL: https://tekindar666.github.io/styles/zen/preview.html
+
+The workflow runs typechecking, lint, and tests before deploying. Preview assets use `/styles/` as their base path; update the workflow if the repository name changes. The site build lives in `preview-dist/`, separate from the library's `dist/`. This does not publish the npm package.
 
 Browser tests use `CHROMIUM_PATH`, `/usr/bin/chromium` when available, or Playwright's installed Chromium. They create no screenshots or traces. The preview uses Vite to render the real React components; opening the HTML directly is not supported.
