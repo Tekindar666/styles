@@ -4,6 +4,15 @@ import { createElement as h } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { ZenButton, ZenHeading, ZenText, ZenTheme } from '../dist/index.js';
 
+test('Still palette preserves mode, native props and custom classes', () => {
+  for (const mode of ['light', 'dark']) {
+    const html = renderToStaticMarkup(h(ZenTheme, { mode, palette: 'still', className: 'custom', id: 'theme' }));
+    assert.match(html, new RegExp(`class="zen-${mode} zen-still custom"`));
+    assert.match(html, /id="theme"/);
+    assert.doesNotMatch(html, /palette=/);
+  }
+});
+
 test('components preserve native props and custom classes', () => {
   const html = renderToStaticMarkup(h(ZenTheme, { mode: 'light' },
     h(ZenHeading, { level: 1, id: 'title' }, 'Hello'),

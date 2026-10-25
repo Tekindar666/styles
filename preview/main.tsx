@@ -5,10 +5,11 @@ import '../zen/styles.css';
 
 function Preview() {
   const [mode, setMode] = useState<'dark' | 'light'>('dark');
+  const [palette, setPalette] = useState<'zen' | 'still'>('zen');
   const [page, setPage] = useState('About');
   const buttonRef = useRef<HTMLButtonElement>(null);
   return (
-    <ZenTheme mode={mode} style={{ minHeight: '100vh' }}>
+    <ZenTheme mode={mode} palette={palette} style={{ minHeight: '100vh' }}>
       <ZenContent>
         <ZenNav aria-label="Main navigation" style={{ marginBottom: 48 }}>
           {['About', 'Work', 'Projects', 'Blog'].map((label) => (
@@ -16,13 +17,15 @@ function Preview() {
               onClick={() => setPage(label)}>{label}</a>
           ))}
         </ZenNav>
-        <ZenHeading level={1}>Zen</ZenHeading>
+        <ZenHeading level={1}>{palette === 'still' ? 'Still' : 'Zen'}</ZenHeading>
         <ZenText>A quiet starting point for personal websites. System fonts, readable content, and a restrained palette.</ZenText>
         <ZenText muted>Secondary text provides context without competing with the main content.</ZenText>
         <ZenText><ZenLink href="#example">Explore the example</ZenLink></ZenText>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16 }}>
           <ZenButton ref={buttonRef} id="toggle" aria-pressed={mode === 'light'}
             onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}>Light mode</ZenButton>
+          <ZenButton id="palette-toggle" aria-pressed={palette === 'still'}
+            onClick={() => setPalette(palette === 'zen' ? 'still' : 'zen')}>Still palette</ZenButton>
           <ZenButton disabled>Unavailable</ZenButton>
         </div>
         <section id="example" style={{ marginTop: 64 }}>

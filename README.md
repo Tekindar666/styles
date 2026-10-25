@@ -31,6 +31,28 @@ All components accept native props, refs, and `className`. React 19 is required 
 
 `ZenTheme` renders a div, applies the palette, and inherits font defaults down its subtree. Your app owns mode selection, persistence, and system-preference detection. Nested themes work. Full-page wrappers can use `minHeight: '100vh'`; the package intentionally does not reset body margins.
 
+## Still palette
+
+Reuse Zen's components, typography, spacing, and behavior with a gray-green palette:
+
+```tsx
+<ZenTheme palette="still" mode="light">
+  <ZenHeading>This week</ZenHeading>
+  <ZenButton>Add meal</ZenButton>
+</ZenTheme>
+```
+
+`palette` defaults to `"zen"`. Still supports both modes with three colors each:
+
+| Mode | Background | Foreground | Muted / interaction |
+| --- | --- | --- | --- |
+| Light | `#F7F7F5` | `#303431` | `#606963` |
+| Dark | `#171B18` | `#DCE1DC` | `#9AA89D` |
+
+Still reuses these colors for borders and states rather than adding shades. Surfaces match the background. Buttons remain transparent at rest; hover uses the muted color with background-colored text. The sliding navigation indicator is outlined to keep link text readable as it moves. Nested wrappers reset the palette, including when returning to default Zen. The existing Tailwind utilities follow the selected palette.
+
+The preview includes independent palette and mode toggles.
+
 ## Sliding navigation
 
 `ZenNav` renders a native `<nav>` and a decorative indicator. Supply direct anchor children, including router components that render anchors. Mark at most one active link with `aria-current="page"`. Links remain ordinary navigation links, not tabs.

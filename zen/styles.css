@@ -22,8 +22,34 @@
     --zen-active: #d6d6d6;
   }
 
+  .zen-still.zen-light {
+    --zen-background: #f7f7f5;
+    --zen-foreground: #303431;
+    --zen-muted: #606963;
+  }
+
+  .zen-still.zen-dark {
+    --zen-background: #171b18;
+    --zen-foreground: #dce1dc;
+    --zen-muted: #9aa89d;
+  }
+
+  .zen-still.zen-light,
+  .zen-still.zen-dark {
+    --zen-border: var(--zen-muted);
+    --zen-surface: var(--zen-background);
+    --zen-hover: var(--zen-muted);
+    --zen-active: var(--zen-muted);
+    --zen-hover-foreground: var(--zen-background);
+    --zen-indicator-background: var(--zen-background);
+    --zen-indicator-border: var(--zen-muted);
+  }
+
   .zen-dark,
   .zen-light {
+    --zen-hover-foreground: var(--zen-foreground);
+    --zen-indicator-background: var(--zen-hover);
+    --zen-indicator-border: transparent;
     background-color: var(--zen-background);
     color: var(--zen-foreground);
     font-family: system-ui, sans-serif;
@@ -88,6 +114,7 @@
   @media (hover: hover) {
     .zen-button:hover:not(:disabled) {
       background-color: var(--zen-hover);
+      color: var(--zen-hover-foreground);
     }
   }
 
@@ -126,7 +153,8 @@
     z-index: -1;
     visibility: hidden;
     border-radius: 999px;
-    background-color: var(--zen-hover);
+    background-color: var(--zen-indicator-background);
+    box-shadow: inset 0 0 0 1px var(--zen-indicator-border);
     pointer-events: none;
   }
 

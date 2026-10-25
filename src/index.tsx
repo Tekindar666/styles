@@ -3,9 +3,12 @@ export { ZenNav } from './nav.js';
 
 const classes = (base: string, extra?: string) => [base, extra].filter(Boolean).join(' ');
 
-type ThemeProps = ComponentPropsWithRef<'div'> & { mode: 'dark' | 'light' };
-export function ZenTheme({ mode, className, ...props }: ThemeProps) {
-  return <div {...props} className={classes(`zen-${mode}`, className)} />;
+type ThemeProps = ComponentPropsWithRef<'div'> & {
+  mode: 'dark' | 'light';
+  palette?: 'zen' | 'still';
+};
+export function ZenTheme({ mode, palette = 'zen', className, ...props }: ThemeProps) {
+  return <div {...props} className={classes(classes(`zen-${mode}`, palette === 'still' ? 'zen-still' : ''), className)} />;
 }
 
 export function ZenContent({ className, ...props }: ComponentPropsWithRef<'main'>) {
